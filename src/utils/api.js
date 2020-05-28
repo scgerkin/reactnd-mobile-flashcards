@@ -1,10 +1,10 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import {dummyDecks} from "./_DATA";
+import {decks} from "./_DATA";
 
 export const DECK_STORAGE_KEY = "com.scgrk.reactnd.mobileFlashCards::decks"
 
 export function fetchDecks() {
-  return dummyDecks;
+  return {decks};
   //return AsyncStorage.getItem(DECK_STORAGE_KEY)
 }
 

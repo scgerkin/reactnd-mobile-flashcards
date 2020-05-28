@@ -6,18 +6,21 @@ import {Provider} from "react-redux";
 import {createStore} from "redux";
 import reducer from "./src/redux/reducers"
 import middleware from "./src/redux/middleware"
+import MainDisplay from "./src/components/MainDisplay";
 
 const store = createStore(reducer, middleware)
 
-export default function App() {
-  return (
-      <Provider store={store}>
-        <View style={{flex: 1}}>
-          <FlashcardStatusBar backgroundColor={CLR_BG_03} barStyle={"light-content"}/>
-          <Text>App.js</Text>
-        </View>
-      </Provider>
-  );
+class App extends React.Component {
+  render() {
+    return (
+        <Provider store={store}>
+          <View style={{flex: 1}}>
+            <FlashcardStatusBar backgroundColor={CLR_BG_03} barStyle={"light-content"}/>
+            <MainDisplay/>
+          </View>
+        </Provider>
+    );
+  }
 }
 
 function FlashcardStatusBar({backgroundColor, ...props}) {
@@ -27,3 +30,6 @@ function FlashcardStatusBar({backgroundColor, ...props}) {
       </View>
   );
 }
+
+
+export default App;

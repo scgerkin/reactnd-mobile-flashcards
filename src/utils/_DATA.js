@@ -1,4 +1,4 @@
-export const dummyDecks = {
+export const decks = {
   React: {
     title: 'React',
         questions: [
