@@ -4,8 +4,8 @@ import Constants from "expo-constants";
 import {CLR_BG_03} from "./src/utils/colors";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import reducer from "./src/reducers"
-import middleware from "./src/middleware"
+import reducer from "./src/redux/reducers"
+import middleware from "./src/redux/middleware"
 
 const store = createStore(reducer, middleware)
 
