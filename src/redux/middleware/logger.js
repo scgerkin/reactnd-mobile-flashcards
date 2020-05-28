@@ -1,10 +1,13 @@
 
 const logger = (store) => (next) => (action) => {
-  console.group(action.type);
-  console.log("The action: ", action);
+  console.log("------------------------------ACTION------------------------------")
+  console.log(new Date().toLocaleTimeString())
+  console.log("------------------------------------------------------------------")
+  console.log(action);
   const returnValue = next(action);
-  console.log("The new state: ", store.getState());
-  console.groupEnd();
+  console.log("----------------------------NEW STATE-----------------------------")
+  console.log(store.getState());
+  console.log("------------------------------------------------------------------")
   return returnValue;
 }
 
