@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View} from 'react-native'
-import FlashcardStatusBar from "./components/FlashcardStatusBar";
+import FlashcardStatusBar from "./src/components/FlashcardStatusBar";
 
 export default function App() {
   return (
