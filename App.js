@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, View} from 'react-native'
-import FlashcardStatusBar from "./src/components/FlashcardStatusBar";
+import {StatusBar, Text, View} from 'react-native'
+import Constants from "expo-constants";
 
 export default function App() {
   return (
@@ -8,5 +8,13 @@ export default function App() {
       <FlashcardStatusBar backgroundColor={"black"} barStyle={"light-content"}/>
       <Text>App.js</Text>
     </View>
+  );
+}
+
+function FlashcardStatusBar({backgroundColor, ...props}) {
+  return (
+      <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+        <StatusBar translucent backgroundColor={backgroundColor} {...props}/>
+      </View>
   );
 }
