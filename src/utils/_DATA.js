@@ -1,12 +1,12 @@
 export const decks = {
-  EMPTYDECK: {
+  "EMPTYDECK": {
     id: "EMPTYDECK",
     title: "Empty Deck",
     questions: [],
     correct: [],
     incorrect: []
   },
-  TESTDECK: {
+  "TESTDECK": {
     id: "TESTDECK",
     title: "Test Deck",
     questions: [
@@ -34,7 +34,7 @@ export const decks = {
     correct: [],
     incorrect: []
   },
-  React: {
+  "1b4d09fe-c12a-4eac-a471-2983c18f1c93": {
     id: "1b4d09fe-c12a-4eac-a471-2983c18f1c93",
     title: "React",
     questions: [
@@ -52,7 +52,7 @@ export const decks = {
     correct: [],
     incorrect: [],
   },
-  JavaScript: {
+  "122eec42-9bf9-41bb-88db-30582572174d": {
     id: "122eec42-9bf9-41bb-88db-30582572174d",
     title: "JavaScript",
     questions: [
@@ -65,8 +65,8 @@ export const decks = {
     correct: [],
     incorrect: [],
   },
-  StateCapitals: {
-    id: "aaf8c12c-4eaf-48ff-9703-4da5a4df1b20",
+  "85c08cfe-4397-41ae-8fe7-ed9dfbe2479f": {
+    id: "85c08cfe-4397-41ae-8fe7-ed9dfbe2479f",
     title: "State Capitals",
     questions: [
       {id: "2f5d827e-349d-494f-bc27-9b2dc3ded263", question: "Alabama", answer: "Montgomery"},
