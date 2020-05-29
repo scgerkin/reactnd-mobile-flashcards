@@ -1,4 +1,11 @@
 export const decks = {
+  EMPTYDECK: {
+    id: "EMPTYDECK",
+    title: "Empty Deck",
+    questions: [],
+    correct: [],
+    incorrect: []
+  },
   TESTDECK: {
     id: "TESTDECK",
     title: "Test Deck",
