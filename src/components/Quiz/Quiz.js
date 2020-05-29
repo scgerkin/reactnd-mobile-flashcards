@@ -9,19 +9,15 @@ import {markAnswer} from "../../redux/actions";
 
 class Quiz extends React.Component {
   state = {
-    deckId: "",
-    cardsInDeck: 0,
     currentCardNumber: 0,
     deckQuestionStack: [],
     currentQuestion: {id: "", question: "", answer: ""},
   };
 
   componentDidMount() {
-    const {deckId, cardsInDeck, currentCardNumber, deckQuestionStack, currentQuestion} = this.props;
+    const {currentCardNumber, deckQuestionStack, currentQuestion} = this.props;
 
     this.setState(({
-      deckId,
-      cardsInDeck,
       currentCardNumber,
       deckQuestionStack,
       currentQuestion,
@@ -29,13 +25,16 @@ class Quiz extends React.Component {
   }
 
   onMarkAnswer = (correct) => {
-    const {deckId, currentQuestion} = this.state;
-    const {dispatch} = this.props;
+    const {currentQuestion} = this.state;
+    const {deckId, dispatch} = this.props;
     const questionId = currentQuestion.id;
+
     dispatch(markAnswer({deckId, questionId, correct}));
+
     this.setState((prev) => {
       const unanswered = prev.deckQuestionStack.filter(
           q => q.id !== currentQuestion.id);
+
       return {
         deckQuestionStack: unanswered,
         currentCardNumber: prev.currentCardNumber + 1,
@@ -45,7 +44,8 @@ class Quiz extends React.Component {
   };
 
   render() {
-    const {currentCardNumber, cardsInDeck, currentQuestion} = this.state;
+    const {currentCardNumber, currentQuestion} = this.state;
+    const {cardsInDeck} = this.props;
 
     if (currentCardNumber === cardsInDeck + 1) { //todo make component with results
       return (
@@ -92,8 +92,8 @@ function mapStateToProps({decks}, {deckId}) {
 
   const deck = decks[deckId];
   const unanswered = shuffle(getUnansweredQuestions(deck));
+
   return {
-    deck: deck,
     deckId: deckId,
     cardsInDeck: deck.questions.length,
     currentCardNumber: deck.questions.length > 0 ? 1 : 0,
