@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {ScrollView} from "react-native";
 import Deck from "./Deck";
-import {cardPrimary, cardSecondary} from "../../styles/cards";
+import {deckPrimary, deckSecondary} from "../../styles/cards";
 
 function DeckList(props) {
   const {deckIds} = props;
@@ -12,7 +12,7 @@ function DeckList(props) {
             <Deck
                 key={id}
                 deckId={id}
-                style={index % 2 === 0 ? cardPrimary : cardSecondary}
+                style={index % 2 === 0 ? deckPrimary : deckSecondary}
             />
         ))}
       </ScrollView>

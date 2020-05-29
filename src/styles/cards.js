@@ -25,7 +25,7 @@ export const cardDefault = StyleSheet.create({
   }
 });
 
-export const cardPrimary = StyleSheet.create({
+export const deckPrimary = StyleSheet.create({
   container: {
     ...cardDefault.container,
   },
@@ -37,7 +37,7 @@ export const cardPrimary = StyleSheet.create({
   }
 })
 
-export const cardSecondary = StyleSheet.create({
+export const deckSecondary = StyleSheet.create({
   container: {
     ...cardDefault.container,
     backgroundColor: CLR_GREY_LT

@@ -46,7 +46,7 @@ export const btnSuccess = StyleSheet.create({
   }
 })
 
-export const btnWrong = StyleSheet.create({
+export const btnIncorrect = StyleSheet.create({
   container: {
     ...btnDefault.container,
     backgroundColor: CLR_RED

@@ -9,8 +9,9 @@ import {
   btnStart,
   btnSubmit,
   btnSuccess, btnText,
-  btnWrong,
+  btnIncorrect,
 } from "../styles/buttons";
+import Quiz from "./Quiz/Quiz";
 
 class MainDisplay extends React.Component {
   componentDidMount() {
@@ -20,14 +21,7 @@ class MainDisplay extends React.Component {
   render() {
     return (
         <ScrollView>
-          <DeckList/>
-          <Button style={btnDefault} text={"Default"}/>
-          <Button style={btnSuccess} text={"Success"}/>
-          <Button style={btnWrong} text={"Wrong"}/>
-          <Button style={btnSubmit} text={"Submit"}/>
-          <Button style={btnStart} text={"Start"}/>
-          <Button style={btnDelete} text={"Delete"}/>
-          <Button style={btnText} text={"Text"}/>
+          <Quiz question={"Question"} answer={"Answer"}/>
         </ScrollView>
     );
   }
