@@ -3,6 +3,7 @@ import {fetchDecks} from "../../utils/api";
 export const RECEIVE_DECKS = "RECEIVE_DECKS";
 export const ADD_DECK = "ADD_DECK";
 export const ADD_QUESTION = "ADD_QUESTION";
+export const MARK_ANSWER = "MARK_ANSWER";
 
 export function receiveDecks(decks) {
   return {
@@ -31,5 +32,14 @@ export function addQuestion({key, question}) {
 export function handleInitialData() {
   return (dispatch) => {
     return dispatch(receiveDecks(fetchDecks()))
+  }
+}
+
+export function markAnswer({deckId, questionId, correct}) {
+  return {
+    type: MARK_ANSWER,
+    deckId,
+    questionId,
+    correct
   }
 }

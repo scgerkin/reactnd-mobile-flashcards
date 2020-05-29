@@ -11,8 +11,9 @@ const logger = (store) => (next) => (action) => {
   }
   const returnValue = next(action);
   console.log("----------------------------NEW STATE-----------------------------")
-  const {decks} = store.getState();
-  console.log(decks["TESTDECK"]);
+  // const {decks} = store.getState();
+  // console.log(decks["TESTDECK"]);
+  console.log(store.getState());
   console.log("------------------------------------------------------------------")
   return returnValue;
 }
