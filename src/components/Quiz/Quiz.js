@@ -5,68 +5,41 @@ import {btnIncorrect, btnSuccess} from "../../styles/buttons";
 import Button from "../Shared/Button";
 import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
+import {markAnswer} from "../../redux/actions";
 
 class Quiz extends React.Component {
-  //fixme not sure all of these are necessary, can probably simplify this
-  // if not, maybe extract some of this into some sub components
-  // correct/incorrect could be redundant if we use redux
   state = {
+    deckId: "",
     cardsInDeck: 0,
     currentCardNumber: 0,
     deckQuestionStack: [],
     currentQuestion: {id: "", question: "", answer: ""},
-    totalCorrect: 0,
-    totalIncorrect: 0,
-    lastCard: false,
   };
 
   componentDidMount() {
-    const {
-      cardsInDeck, currentCardNumber, deckQuestionStack,
-      currentQuestion, totalCorrect, totalIncorrect,
-    } = this.props;
+    const {deckId, cardsInDeck, currentCardNumber, deckQuestionStack, currentQuestion} = this.props;
 
     this.setState(({
+      deckId,
       cardsInDeck,
       currentCardNumber,
       deckQuestionStack,
       currentQuestion,
-      totalCorrect,
-      totalIncorrect,
-      lastCard: cardsInDeck === 1,
     }));
   }
 
-  onCorrect = () => {
-    //todo
-    // update state
-    // move to next card
-    this.popNextCard(true);
-    console.log("Correct");
-  };
-
-  onIncorrect = () => {
-    this.popNextCard(false);
-    console.log("Incorrect");
-  };
-
-  // todo remove .pop so not mutating state, instead use filter, using the state
-  //  containing correct/incorrect ids
-  //  that way, when a question has been asked but not answered, it's still part
-  //  of the questions to ask
-  popNextCard = (answeredCorrectly) => {
-    this.setState((currState) => {
+  onMarkAnswer = (correct) => {
+    const {deckId, currentQuestion} = this.state;
+    const {dispatch} = this.props;
+    const questionId = currentQuestion.id;
+    dispatch(markAnswer({deckId, questionId, correct}));
+    this.setState((prev) => {
+      const unanswered = prev.deckQuestionStack.filter(
+          q => q.id !== currentQuestion.id);
       return {
-        currentCardNumber: currState.currentCardNumber + 1,
-        deckQuestionStack: currState.deckQuestionStack,
-        currentQuestion: currState.deckQuestionStack.pop(),
-        lastCard: currState.deckQuestionStack.length === 1,
-        totalCorrect: answeredCorrectly ?
-            currState.totalCorrect + 1 :
-            currState.totalCorrect,
-        totalIncorrect: !answeredCorrectly ?
-            currState.totalIncorrect + 1 :
-            currState.totalIncorrect,
+        deckQuestionStack: unanswered,
+        currentCardNumber: prev.currentCardNumber + 1,
+        currentQuestion: unanswered.length > 0 ? unanswered[0] : null,
       };
     });
   };
@@ -85,6 +58,8 @@ class Quiz extends React.Component {
     } else {
       return (
           <View>
+            <Text>Current Card: {currentCardNumber}</Text>
+            <Text>Cards in Deck: {cardsInDeck}</Text>
             <NoteCard
                 question={currentQuestion.question}
                 answer={currentQuestion.answer}
@@ -92,12 +67,12 @@ class Quiz extends React.Component {
             <Button
                 style={btnSuccess}
                 text={"Correct"}
-                onPressEvent={this.onCorrect}
+                onPressEvent={() => this.onMarkAnswer(true)}
             />
             <Button
                 style={btnIncorrect}
                 text={"Incorrect"}
-                onPressEvent={this.onIncorrect}
+                onPressEvent={() => this.onMarkAnswer(false)}
             />
           </View>
       );
@@ -112,21 +87,26 @@ function mapStateToProps({decks}, {deckId}) {
       currentCardNumber: 0,
       deckQuestionStack: [],
       currentQuestion: {id: "", question: "", answer: ""},
-      totalCorrect: 0,
-      totalIncorrect: 0,
     };
   }
 
   const deck = decks[deckId];
-  const shuffledQuestions = shuffle(deck.questions);
+  const unanswered = shuffle(getUnansweredQuestions(deck));
   return {
+    deck: deck,
+    deckId: deckId,
     cardsInDeck: deck.questions.length,
     currentCardNumber: deck.questions.length > 0 ? 1 : 0,
-    deckQuestionStack: shuffledQuestions,
-    currentQuestion: shuffledQuestions.pop(),
-    totalCorrect: 0,
-    totalIncorrect: 0,
+    deckQuestionStack: unanswered,
+    currentQuestion: unanswered.length > 0 ? unanswered[0] : null,
   };
+}
+
+function getUnansweredQuestions(deck) {
+  return deck.questions.filter(question => {
+    return !(deck.correct.includes(question.id) ||
+        deck.incorrect.includes(question.id));
+  });
 }
 
 export default connect(mapStateToProps)(Quiz);
