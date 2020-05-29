@@ -2,7 +2,8 @@ import React from "react";
 import {View} from 'react-native'
 import {connect} from "react-redux";
 import {handleInitialData} from "../redux/actions";
-import Deck from "./Deck";
+import Deck from "./Deck/Deck";
+import DeckList from "./Deck/DeckList";
 
 class MainDisplay extends React.Component {
   componentDidMount() {
@@ -12,8 +13,7 @@ class MainDisplay extends React.Component {
   render() {
     return (
         <View>
-          <Deck deckKey={"React"}/>
-          <Deck deckKey={"JavaScript"}/>
+          <DeckList/>
         </View>
     );
   }
