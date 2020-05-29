@@ -1,14 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Text, View, StyleSheet} from "react-native";
-import {card} from "../../styles/cards";
+import {cardDefault} from "../../styles/cards";
 
 function Deck(props) {
-  const {deck} = props;
+  const {style, deck} = props;
   return (
-      <View style={card.container}>
-        <Text style={card.title}>{deck.title}</Text>
-        <Text style={card.content}>{deck.questions.length}</Text>
+      <View style={style ? style.container : cardDefault.container}>
+        <Text style={style ? style.title : cardDefault.title}>{deck.title}</Text>
+        <Text style={style ? style.content : cardDefault.content}>{deck.questions.length}</Text>
       </View>
   );
 }
