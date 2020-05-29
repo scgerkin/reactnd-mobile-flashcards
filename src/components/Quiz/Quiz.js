@@ -6,6 +6,7 @@ import Button from "../Shared/Button";
 import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
 import {markAnswer} from "../../redux/actions";
+import QuizResults from "./QuizResults";
 
 class Quiz extends React.Component {
   state = {
@@ -45,11 +46,11 @@ class Quiz extends React.Component {
 
   render() {
     const {currentCardNumber, currentQuestion} = this.state;
-    const {cardsInDeck} = this.props;
+    const {cardsInDeck, deckId} = this.props;
 
     if (currentCardNumber === cardsInDeck + 1) { //todo make component with results
       return (
-          <View><Text>End of quiz</Text></View>
+          <QuizResults deckId={deckId}/>
       );
     } else if (currentCardNumber <= 0) { //todo make component for this
       return (

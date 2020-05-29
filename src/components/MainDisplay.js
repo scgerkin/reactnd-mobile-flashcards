@@ -21,9 +21,7 @@ class MainDisplay extends React.Component {
     } else {
       return (
           <ScrollView>
-            <QuizResults deckId={"FINISHEDDECK"}/>
-
-            {/*<Quiz deckId={"TESTDECK"}/>*/}
+            <Quiz deckId={"TESTDECK"}/>
           </ScrollView>
       );
     }
