@@ -1,4 +1,10 @@
-import {ADD_DECK, ADD_QUESTION, MARK_ANSWER, RECEIVE_DECKS} from "../actions";
+import {
+  ADD_DECK,
+  ADD_QUESTION,
+  MARK_ANSWER,
+  RECEIVE_DECKS,
+  RESET_QUIZ,
+} from "../actions";
 
 function decks(state = {}, action) {
   switch (action.type) {
@@ -10,6 +16,8 @@ function decks(state = {}, action) {
       return handleAddQuestion(state, action);
     case MARK_ANSWER:
       return handleMarkAnswer(state, action);
+    case RESET_QUIZ:
+      return handleResetQuiz(state, action);
     default:
       return state;
   }
@@ -48,8 +56,8 @@ function handleMarkAnswer(state, action) {
         ...state.decks,
         [deckId]: {
           ...deck,
-          correct: deck.correct.concat([questionId])
-        }
+          correct: deck.correct.concat([questionId]),
+        },
       },
     };
   } else {
@@ -59,11 +67,29 @@ function handleMarkAnswer(state, action) {
         ...state.decks,
         [deckId]: {
           ...deck,
-          incorrect: deck.incorrect.concat([questionId])
-        }
+          incorrect: deck.incorrect.concat([questionId]),
+        },
       },
     };
   }
+}
+
+function handleResetQuiz(state, action) {
+  const {deckId} = action;
+  const {decks} = state;
+  const deck = decks[deckId];
+
+  return {
+    ...state,
+    decks: {
+      ...state.decks,
+      [deckId]: {
+        ...deck,
+        correct: [],
+        incorrect: [],
+      },
+    },
+  };
 }
 
 export default decks;

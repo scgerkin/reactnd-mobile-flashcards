@@ -3,6 +3,7 @@ import {ScrollView, Text, View} from "react-native";
 import {connect} from "react-redux";
 import {handleInitialData} from "../redux/actions";
 import Quiz from "./Quiz/Quiz";
+import QuizResults from "./Quiz/QuizResults";
 
 class MainDisplay extends React.Component {
   componentDidMount() {
@@ -20,7 +21,9 @@ class MainDisplay extends React.Component {
     } else {
       return (
           <ScrollView>
-            <Quiz deckId={"TESTDECK"}/>
+            <QuizResults deckId={"FINISHEDDECK"}/>
+
+            {/*<Quiz deckId={"TESTDECK"}/>*/}
           </ScrollView>
       );
     }

@@ -4,6 +4,7 @@ export const RECEIVE_DECKS = "RECEIVE_DECKS";
 export const ADD_DECK = "ADD_DECK";
 export const ADD_QUESTION = "ADD_QUESTION";
 export const MARK_ANSWER = "MARK_ANSWER";
+export const RESET_QUIZ = "RESET_QUIZ";
 
 export function receiveDecks(decks) {
   return {
@@ -41,5 +42,12 @@ export function markAnswer({deckId, questionId, correct}) {
     deckId,
     questionId,
     correct
+  }
+}
+
+export function resetQuiz(deckId) {
+  return {
+    type: RESET_QUIZ,
+    deckId
   }
 }

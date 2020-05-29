@@ -1,10 +1,51 @@
 export const decks = {
+  "FINISHEDDECK": {
+    id: "FINISHEDDECK",
+    title: "Finished Deck",
+    questions: [
+      {
+        id: "2f5d827e-349d-494f-bc27-9b2dc3ded263",
+        question: "Alabama",
+        answer: "Montgomery",
+      },
+      {
+        id: "dcf90bea-c073-4aad-a4d0-f529104323e7",
+        question: "Alaska",
+        answer: "Juneau",
+      },
+      {
+        id: "6c3d365e-07f8-4cf0-8e8e-bec89759750c",
+        question: "Arizona",
+        answer: "Phoenix",
+      },
+      {
+        id: "be77fd45-73b3-4c42-a05e-500c3456a085",
+        question: "Arkansas",
+        answer: "Little Rock",
+      },
+      {
+        id: "df5ace40-74ca-4608-b98f-98b192a011ce",
+        question: "California",
+        answer: "Sacramento",
+      },
+    ],
+    correct: [
+      "2f5d827e-349d-494f-bc27-9b2dc3ded263",
+      "dcf90bea-c073-4aad-a4d0-f529104323e7",
+      "6c3d365e-07f8-4cf0-8e8e-bec89759750c",
+    ]
+    ,
+    incorrect: [
+      "be77fd45-73b3-4c42-a05e-500c3456a085",
+      "df5ace40-74ca-4608-b98f-98b192a011ce",
+    ],
+  },
   "EMPTYDECK": {
     id: "EMPTYDECK",
     title: "Empty Deck",
     questions: [],
     correct: [],
-    incorrect: []
+    incorrect: [],
   },
   "TESTDECK": {
     id: "TESTDECK",
@@ -13,26 +54,26 @@ export const decks = {
       {
         id: "c81e0195-f15c-4884-b50b-0b5ca4350e45",
         question: "Question 1",
-        answer: "Answer 1"
+        answer: "Answer 1",
       },
       {
         id: "e10d394d-8a81-4115-96ef-05e84fdf3e8c",
         question: "Question 2",
-        answer: "Answer 2"
+        answer: "Answer 2",
       },
       {
         id: "207bf752-4e88-454b-9660-791efa129ac3",
         question: "Question 3",
-        answer: "Answer 3"
+        answer: "Answer 3",
       },
       {
         id: "17255c7c-c5ab-42b7-b9e7-cdbc0f8c07d6",
         question: "Question 4",
-        answer: "Answer 4"
-      }
+        answer: "Answer 4",
+      },
     ],
     correct: [],
-    incorrect: []
+    incorrect: [],
   },
   // "1b4d09fe-c12a-4eac-a471-2983c18f1c93": {
   //   id: "1b4d09fe-c12a-4eac-a471-2983c18f1c93",
