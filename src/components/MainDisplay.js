@@ -1,8 +1,7 @@
 import React from "react";
-import {View} from 'react-native'
+import {View, ScrollView} from 'react-native'
 import {connect} from "react-redux";
 import {handleInitialData} from "../redux/actions";
-import Deck from "./Deck/Deck";
 import DeckList from "./Deck/DeckList";
 import Button from "./Shared/Button";
 import {
@@ -20,7 +19,7 @@ class MainDisplay extends React.Component {
 
   render() {
     return (
-        <View>
+        <ScrollView>
           <DeckList/>
           <Button style={btnDefault} text={"Default"}/>
           <Button style={btnSuccess} text={"Success"}/>
@@ -29,7 +28,7 @@ class MainDisplay extends React.Component {
           <Button style={btnStart} text={"Start"}/>
           <Button style={btnDelete} text={"Delete"}/>
           <Button style={btnText} text={"Text"}/>
-        </View>
+        </ScrollView>
     );
   }
 }
