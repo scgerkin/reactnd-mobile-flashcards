@@ -1,30 +1,35 @@
 import React from "react";
-import {View, ScrollView} from 'react-native'
+import {ScrollView, Text, View} from "react-native";
 import {connect} from "react-redux";
 import {handleInitialData} from "../redux/actions";
-import DeckList from "./Deck/DeckList";
-import Button from "./Shared/Button";
-import {
-  btnDefault, btnDelete,
-  btnStart,
-  btnSubmit,
-  btnSuccess, btnText,
-  btnIncorrect,
-} from "../styles/buttons";
 import Quiz from "./Quiz/Quiz";
 
 class MainDisplay extends React.Component {
   componentDidMount() {
-    this.props.dispatch(handleInitialData());
+    if (!this.props.decks) {
+      this.props.dispatch(handleInitialData());
+    }
   }
 
   render() {
-    return (
-        <ScrollView>
-          <Quiz question={"Question"} answer={"Answer"}/>
-        </ScrollView>
-    );
+    const {decks} = this.props;
+    if (!decks) {
+      return (
+          <View><Text>Loading</Text></View>
+      );
+    } else {
+      return (
+          <ScrollView>
+            <Quiz deckId={"TESTDECK"}/>
+          </ScrollView>
+      );
+    }
   }
 }
 
-export default connect()(MainDisplay);
+const mapStateToProps = (state) => {
+  const {decks} = state;
+  return {decks};
+};
+
+export default connect(mapStateToProps)(MainDisplay);
