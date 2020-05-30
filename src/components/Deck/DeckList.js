@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import {ScrollView, TouchableOpacity} from "react-native";
 import {deckPrimary, deckSecondary} from "../../styles/cards";
@@ -10,14 +10,15 @@ function DeckList(props) {
   return (
       <ScrollView>
         {deckIds.map((id, index) => (
-            <TouchableOpacity onPress={() => navigation.navigate(id)}>
-              <DeckPreview
-                  key={id}
-                  deckTitle={decks[id].title}
-                  totalCards={decks[id].questions.length}
-                  style={index % 2 === 0 ? deckPrimary : deckSecondary}
-              />
-            </TouchableOpacity>
+            <Fragment key={id}>
+              <TouchableOpacity onPress={() => navigation.navigate(id)}>
+                <DeckPreview
+                    deckTitle={decks[id].title}
+                    totalCards={decks[id].questions.length}
+                    style={index % 2 === 0 ? deckPrimary : deckSecondary}
+                />
+              </TouchableOpacity>
+            </Fragment>
         ))}
       </ScrollView>
   );
