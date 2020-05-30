@@ -1,16 +1,17 @@
 import React from "react";
-import {Text, View} from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
 import {connect} from "react-redux";
+import {Text, View} from "react-native";
+import {NavigationContainer} from "@react-navigation/native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+
 import {handleInitialData} from "../redux/actions";
 import NewDeck from "./Create/NewDeck";
-import {createDrawerNavigator} from "@react-navigation/drawer";
 import DeckHome from "./Deck/DeckHome";
 
 export const DECK_ROOT = "Decks";
 export const CREATE_DECK_ROOT = "New Deck";
 
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 class MainDisplay extends React.Component {
   componentDidMount() {
@@ -28,18 +29,18 @@ class MainDisplay extends React.Component {
     } else {
       return (
           <NavigationContainer>
-            <Drawer.Navigator initialRouteName={DECK_ROOT}>
-              <Drawer.Screen
+            <Tab.Navigator initialRouteName={DECK_ROOT}>
+              <Tab.Screen
                   name={DECK_ROOT}
                   component={DeckHome}
                   options={{title: "Your Decks"}}
               />
-              <Drawer.Screen
+              <Tab.Screen
                   name={CREATE_DECK_ROOT}
                   component={NewDeck}
                   options={{title: "Create a new Deck"}}
               />
-            </Drawer.Navigator>
+            </Tab.Navigator>
           </NavigationContainer>
 
       );
