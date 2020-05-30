@@ -15,15 +15,7 @@ export function receiveDecks(decks) {
 }
 
 // todo hook into api
-export function addDeck(deckName) {
-  const deck = {
-    id: generateUID(),
-    title: deckName,
-    questions: [],
-    correct: [],
-    incorrect: []
-  }
-
+export function addDeck(deck) {
   return {
     type: ADD_DECK,
     deck

@@ -5,16 +5,27 @@ import {addDeck} from "../../redux/actions";
 import Button from "../Shared/Button";
 import {btnSubmit} from "../../styles/buttons";
 import {inputDefault} from "../../styles/input";
+import {generateUID} from "../../utils/helpers";
+import {DECK_ROOT} from "../MainDisplay";
 
-//todo validate input
 class NewDeck extends React.Component {
   state = {
     deckName: "",
   };
 
+  //todo validate input
   onSubmit = () => {
-    const {dispatch} = this.props;
-    dispatch(addDeck(this.state.deckName));
+    const {dispatch, navigation} = this.props;
+    const id = generateUID();
+    const deck = {
+      id: id,
+      title: this.state.deckName,
+      questions: [],
+      correct: [],
+      incorrect: [],
+    };
+    dispatch(addDeck(deck));
+    navigation.navigate(DECK_ROOT, {screen: id});
   };
 
   render() {

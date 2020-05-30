@@ -5,6 +5,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import DeckDetails from "./DeckDetails";
 import DeckList from "./DeckList";
 import {CLR_GREY_LT, CLR_WHITE_DRK} from "../../styles/colors";
+import {createStackScreenOptions} from "../utils/navigationOptions";
 
 const Stack = createStackNavigator();
 
@@ -25,14 +26,14 @@ function DeckHome(props) {
           <Stack.Screen
               name={DECK_LIST}
               component={DeckList}
-              options={createOptions("Your Decks")}
+              options={createStackScreenOptions("Your Decks")}
           />
           {deckIds.map(id => {
             return (
                 <Stack.Screen
                     key={id}
                     name={id}
-                    options={createOptions(decks[id].title)}
+                    options={createStackScreenOptions(decks[id].title)}
                 >
                   {props => <DeckDetails {...props} deckId={id}/>}
                 </Stack.Screen>);
@@ -51,18 +52,6 @@ function noDecks(props) {
         <Text>NO DECKS RECEIVED FROM PROPS</Text>
       </View>
   );
-}
-
-function createOptions(title) {
-  return {
-    title: title,
-    headerTitleAlign: "center",
-    headerStyle: {
-      height: 100,
-      backgroundColor: CLR_GREY_LT,
-    },
-    headerTintColor: CLR_WHITE_DRK,
-  };
 }
 
 function mapStateToProps(state) {
