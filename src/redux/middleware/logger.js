@@ -10,10 +10,10 @@ const logger = (store) => (next) => (action) => {
     console.log(action);
   }
   const returnValue = next(action);
-  console.log("----------------------------NEW STATE-----------------------------")
-  // const {decks} = store.getState();
-  // console.log(decks["TESTDECK"]);
-  console.log(store.getState());
+  if (action.type !== RECEIVE_DECKS) {
+    console.log("----------------------------NEW STATE-----------------------------")
+    console.log(store.getState());
+  }
   console.log("------------------------------------------------------------------")
   return returnValue;
 }
