@@ -6,34 +6,24 @@ import Button from "../Shared/Button";
 import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
 
 class DeckDetails extends Component {
-  state = {
-    deck: null,
-  };
-
-  componentDidMount() {
-    const {deck} = this.props;
-    this.setState(({deck}));
-  }
-
   onDeleteDeck = () => {
-
+    console.log("ON DELETE");
   };
 
   onAddQuestion = () => {
-
+    console.log("ON ADD QUESTION");
   };
 
   onResetQuiz = () => {
-
+    console.log("ON RESET QUIZ");
   };
 
   onStartQuiz = () => {
-
+    console.log("ON START QUIZ");
   };
 
   render() {
-    const {style} = this.props;
-    const {deck} = this.state;
+    const {style, deck} = this.props;
 
     if (!deck) {//todo handle null deck
       return (
