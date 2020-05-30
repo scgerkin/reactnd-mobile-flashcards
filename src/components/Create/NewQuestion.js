@@ -4,7 +4,9 @@ import {TextInput, View} from "react-native";
 import {addQuestion} from "../../redux/actions";
 import {btnSubmit} from "../../styles/buttons";
 import Button from "../Shared/Button";
+import {inputDefault} from "../../styles/input";
 
+//todo validate input
 class NewQuestion extends React.Component {
   state = {
     question: "",
@@ -21,11 +23,13 @@ class NewQuestion extends React.Component {
     return (
         <View>
           <TextInput
+              style={inputDefault.container}
               placeholder={"Enter the question"}
               onChangeText={text => this.setState(({question: text}))}
               defaultValue={this.state.question}
           />
           <TextInput
+              style={inputDefault.container}
               placeholder={"Enter the answer"}
               onChangeText={text => this.setState(({answer: text}))}
               defaultValue={this.state.answer}

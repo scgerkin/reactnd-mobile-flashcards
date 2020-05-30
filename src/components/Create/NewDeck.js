@@ -4,7 +4,9 @@ import {TextInput, View} from "react-native";
 import {addDeck} from "../../redux/actions";
 import Button from "../Shared/Button";
 import {btnSubmit} from "../../styles/buttons";
+import {inputDefault} from "../../styles/input";
 
+//todo validate input
 class NewDeck extends React.Component {
   state = {
     deckName: "",
@@ -19,6 +21,7 @@ class NewDeck extends React.Component {
     return (
         <View>
           <TextInput
+              style={inputDefault.container}
               placeholder={"Enter a new name for your Deck"}
               onChangeText={text => this.setState(({deckName: text}))}
               defaultValue={this.state.deckName}
