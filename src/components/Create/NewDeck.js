@@ -6,7 +6,7 @@ import Button from "../Shared/Button";
 import {btnSubmit} from "../../styles/buttons";
 import {inputDefault} from "../../styles/input";
 import {generateUID} from "../../utils/helpers";
-import {DECK_ROOT} from "../MainDisplay";
+import {DECK_ROOT} from "../navConstants";
 
 class NewDeck extends React.Component {
   state = {

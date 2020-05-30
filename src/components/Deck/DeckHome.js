@@ -4,12 +4,10 @@ import {Text, View} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
 import DeckDetails from "./DeckDetails";
 import DeckList from "./DeckList";
-import {CLR_GREY_LT, CLR_WHITE_DRK} from "../../styles/colors";
 import {createStackScreenOptions} from "../utils/navigationOptions";
+import {DECK_LIST} from "../navConstants";
 
 const Stack = createStackNavigator();
-
-export const DECK_LIST = "DECK_LIST";
 
 function DeckHome(props) {
   const {decks} = props;
