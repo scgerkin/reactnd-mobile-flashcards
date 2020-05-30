@@ -1,9 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {ScrollView} from "react-native";
-import Deck from "./Deck";
+import Deck from "./DeckPreview";
 import {deckPrimary, deckSecondary} from "../../styles/cards";
-import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
