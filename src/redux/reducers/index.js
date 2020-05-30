@@ -31,10 +31,16 @@ function handleReceiveDecks(state, action) {
 }
 
 function handleAddDeck(state, action) {
+  const {deck} = action;
+  const {decks} = state;
   return {
-    ...state,
-    [action.deck]: action.deck,
-  };
+    decks: {
+      ...decks,
+      [deck.id]: {
+        ...deck
+      }
+    }
+  }
 }
 
 function handleAddQuestion(state, action) {

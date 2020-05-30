@@ -1,10 +1,11 @@
 import {fetchDecks} from "../../utils/api";
-
+import {generateUID} from "../../utils/helpers";
 export const RECEIVE_DECKS = "RECEIVE_DECKS";
 export const ADD_DECK = "ADD_DECK";
 export const ADD_QUESTION = "ADD_QUESTION";
 export const MARK_ANSWER = "MARK_ANSWER";
 export const RESET_QUIZ = "RESET_QUIZ";
+
 
 export function receiveDecks(decks) {
   return {
@@ -14,7 +15,15 @@ export function receiveDecks(decks) {
 }
 
 // todo hook into api
-export function addDeck(deck) {
+export function addDeck(deckName) {
+  const deck = {
+    id: generateUID(),
+    title: deckName,
+    questions: [],
+    correct: [],
+    incorrect: []
+  }
+
   return {
     type: ADD_DECK,
     deck
