@@ -31,11 +31,18 @@ export function addDeck(deckName) {
 }
 
 // todo hook into api
-export function addQuestion({key, question}) {
+export function addQuestion(deckId, question, answer) {
+
+  const questionItem = {
+    id: generateUID(),
+    question: question,
+    answer: answer
+  }
+
   return {
     type: ADD_QUESTION,
-    deck: key,
-    question
+    deckId,
+    question: questionItem
   }
 }
 

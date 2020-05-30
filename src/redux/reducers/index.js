@@ -37,16 +37,24 @@ function handleAddDeck(state, action) {
     decks: {
       ...decks,
       [deck.id]: {
-        ...deck
-      }
-    }
-  }
+        ...deck,
+      },
+    },
+  };
 }
 
 function handleAddQuestion(state, action) {
+  const {deckId, question} = action;
+  const {decks} = state;
+  const deck = decks[deckId];
   return {
-    ...state,
-    [action.key]: state[action.key].questions.concat([action.question]),
+    decks: {
+      ...decks,
+      [deckId]: {
+        ...deck,
+        questions: deck.questions.concat([question]),
+      },
+    },
   };
 }
 

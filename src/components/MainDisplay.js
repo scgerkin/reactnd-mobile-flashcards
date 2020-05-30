@@ -5,6 +5,7 @@ import {handleInitialData} from "../redux/actions";
 import Quiz from "./Quiz/Quiz";
 import QuizResults from "./Quiz/QuizResults";
 import NewDeck from "./Create/NewDeck";
+import NewQuestion from "./Create/NewQuestion";
 
 class MainDisplay extends React.Component {
   componentDidMount() {
@@ -22,7 +23,8 @@ class MainDisplay extends React.Component {
     } else {
       return (
           <ScrollView>
-            <NewDeck/>
+            <NewQuestion deckId={"TESTDECK"}/>
+
             {/*<Quiz deckId={"TESTDECK"}/>*/}
           </ScrollView>
       );
