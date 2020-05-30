@@ -1,34 +1,19 @@
 import React from "react";
-import {connect} from "react-redux";
-import {Text, TouchableOpacity} from "react-native";
+import {Text, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
-import {DECK_DETAILS} from "./DeckHome";
 
 function DeckPreview(props) {
-  const {style, deck, navigation} = props;
+  const {style, deckTitle, totalCards} = props;
   return (
-      <TouchableOpacity
-          style={style ? style.container : cardDefault.container}
-          onPressEvent={() => {
-            navigation.navigate(DECK_DETAILS, {
-              deckId: deck.id,
-            });
-          }}
-      >
+      <View style={style ? style.container : cardDefault.container}>
         <Text style={style ?
             style.title :
-            cardDefault.title}>{deck.title}</Text>
+            cardDefault.title}>{deckTitle}</Text>
         <Text style={style ?
             style.content :
-            cardDefault.content}>{deck.questions.length}</Text>
-      </TouchableOpacity>
+            cardDefault.content}>{totalCards}</Text>
+      </View>
   );
 }
 
-function mapStateToProps({decks}, {deckId}) {
-  return {
-    deck: !!decks ? decks[deckId] : {title: "", questions: []},
-  };
-}
-
-export default connect(mapStateToProps)(DeckPreview);
+export default DeckPreview;

@@ -97,8 +97,7 @@ function resultsDisplay(deck, style) {
   }
 }
 
-function mapStateToProps({decks}, {route}) {
-  const {deckId, style} = route.params;
+function mapStateToProps({decks}, {style, deckId}) {
 
   if (!decks) {
     return null;
