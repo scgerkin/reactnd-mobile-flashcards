@@ -3,6 +3,10 @@ import {connect} from "react-redux";
 import {ScrollView} from "react-native";
 import Deck from "./Deck";
 import {deckPrimary, deckSecondary} from "../../styles/cards";
+import { NavigationContainer } from '@react-navigation/native';
+import {createStackNavigator} from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 function DeckList(props) {
   const {deckIds} = props;
