@@ -1,21 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
-import {View, Text, TextInput} from "react-native";
-import {addDeck, addQuestion} from "../../redux/actions";
+import {TextInput, View} from "react-native";
+import {addQuestion} from "../../redux/actions";
 import {btnSubmit} from "../../styles/buttons";
 import Button from "../Shared/Button";
 
 class NewQuestion extends React.Component {
   state = {
     question: "",
-    answer: ""
-  }
+    answer: "",
+  };
 
   onSubmit = () => {
     const {dispatch, deckId} = this.props;
     const {question, answer} = this.state;
     dispatch(addQuestion(deckId, question, answer));
-  }
+  };
 
   render() {
     return (
@@ -30,7 +30,9 @@ class NewQuestion extends React.Component {
               onChangeText={text => this.setState(({answer: text}))}
               defaultValue={this.state.answer}
           />
-          <Button style={btnSubmit} onPressEvent={this.onSubmit} text={"Submit"}/>
+          <Button style={btnSubmit}
+                  onPressEvent={this.onSubmit}
+                  text={"Submit"}/>
         </View>
     );
   }
