@@ -3,10 +3,12 @@ import {connect} from "react-redux";
 import {Text, View} from "react-native";
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {AntDesign, MaterialCommunityIcons} from "@expo/vector-icons";
 
 import {handleInitialData} from "../redux/actions";
 import NewDeck from "./Create/NewDeck";
 import DeckHome from "./Deck/DeckHome";
+import {CLR_GREEN, CLR_GREY_LT, CLR_LT_BLUE} from "../styles/colors";
 
 export const DECK_ROOT = "Decks";
 export const CREATE_DECK_ROOT = "New Deck";
@@ -23,13 +25,35 @@ class MainDisplay extends React.Component {
   render() {
     const {decks} = this.props;
     if (!decks) {
-      return (
+      return (//todo add a spinner
           <View><Text>Loading</Text></View>
       );
     } else {
       return (
           <NavigationContainer>
-            <Tab.Navigator initialRouteName={DECK_ROOT}>
+            <Tab.Navigator
+                screenOptions={({route}) => ({
+                  tabBarIcon: ({focused, color, size}) => {
+                    let iconName;
+
+                    if (route.name === DECK_ROOT) {
+                      iconName = focused ? "card-text" : "card-text-outline";
+                      return <MaterialCommunityIcons name={iconName} size={size}
+                                                     color={color}/>;
+                    } else if (route.name === CREATE_DECK_ROOT) {
+                      iconName = focused ? "pluscircle" : "pluscircleo";
+                      return <AntDesign name={iconName} size={size}
+                                        color={color}/>;
+                    }
+                  },
+                })}
+                tabBarOptions={{//todo tint needs more contrast
+                  activeBackgroundColor: CLR_GREY_LT,
+                  inactiveBackgroundColor: CLR_GREY_LT,
+                  activeTintColor: CLR_GREEN,
+                  inactiveTintColor: CLR_LT_BLUE,
+                }}
+            >
               <Tab.Screen
                   name={DECK_ROOT}
                   component={DeckHome}
