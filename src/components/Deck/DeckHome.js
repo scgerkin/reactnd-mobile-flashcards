@@ -3,10 +3,10 @@ import {connect} from "react-redux";
 import {createStackNavigator} from "@react-navigation/stack";
 import DeckDetails from "./DeckDetails";
 import DeckList from "./DeckList";
-import {createStackScreenOptions} from "../utils/navigationOptions";
 import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../../utils/navConstants";
 import NewQuestion from "../Create/NewQuestion";
 import Quiz from "../Quiz/Quiz";
+import {CLR_GREY_LT, CLR_WHITE_DRK} from "../../styles/colors";
 
 const Stack = createStackNavigator();
 
@@ -48,6 +48,18 @@ function DeckHome(props) {
         </Stack.Navigator>
       </Fragment>
   );
+}
+
+function createStackScreenOptions(title) {
+  return {
+    title: title,
+    headerTitleAlign: "center",
+    headerStyle: {
+      height: 100,
+      backgroundColor: CLR_GREY_LT,
+    },
+    headerTintColor: CLR_WHITE_DRK,
+  };
 }
 
 function mapStateToProps(state) {
