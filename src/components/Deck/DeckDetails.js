@@ -7,6 +7,7 @@ import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
 import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../navConstants";
 import {deleteDeck, resetQuiz} from "../../redux/actions";
 
+
 //fixme refactor buttons into separate component
 //consider moving each button into a component
 class DeckDetails extends Component {
@@ -24,8 +25,9 @@ class DeckDetails extends Component {
 
   //todo don't show when quiz not started
   onResetQuiz = () => {
-    const {dispatch, deck} = this.props;
+    const {dispatch, deck, navigation} = this.props;
     dispatch(resetQuiz(deck.id));
+    navigation.navigate(deck.id);
   };
 
   //todo don't show when no question or quiz completed
@@ -33,6 +35,7 @@ class DeckDetails extends Component {
     const {deck, navigation} = this.props;
     navigation.navigate(NAV_QUIZ, {
       deckId: deck.id,
+      resetQuiz: this.onResetQuiz
     });
   };
 

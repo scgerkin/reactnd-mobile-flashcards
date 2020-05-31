@@ -46,11 +46,14 @@ class Quiz extends React.Component {
 
   render() {
     const {currentCardNumber, currentQuestion} = this.state;
-    const {cardsInDeck, deckId} = this.props;
+    const {cardsInDeck, deckId, resetQuiz} = this.props;
 
     if (currentCardNumber === cardsInDeck + 1) { //todo make component with results
       return (
-          <QuizResults deckId={deckId}/>
+          <QuizResults
+              deckId={deckId}
+              resetQuiz={resetQuiz}
+          />
       );
     } else if (currentCardNumber <= 0) { //todo make component for this
       return (
@@ -58,7 +61,7 @@ class Quiz extends React.Component {
       );
     } else {
       return (
-          <View>
+          <View style={{flex: 1}}>
             <Text>Current Card: {currentCardNumber}</Text>
             <Text>Cards in Deck: {cardsInDeck}</Text>
             <NoteCard
@@ -90,7 +93,7 @@ function mapStateToProps({decks}, {route}) {
       currentQuestion: {id: "", question: "", answer: ""},
     };
   }
-  const {deckId} = route.params;
+  const {deckId, resetQuiz} = route.params;
   const deck = decks[deckId];
   const unanswered = shuffle(getUnansweredQuestions(deck));
 
@@ -109,6 +112,7 @@ function mapStateToProps({decks}, {route}) {
     currentCardNumber: currentCardNumber,
     deckQuestionStack: unanswered,
     currentQuestion: unanswered.length > 0 ? unanswered[0] : null,
+    resetQuiz: resetQuiz
   };
 }
 
