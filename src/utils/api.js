@@ -1,23 +1,15 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import {testDecks} from "./_DATA";
 
-export const DECK_STORAGE_KEY = "com.scgrk.reactnd.mobileFlashCards::decks"
+export const DECK_STORAGE_KEY = "com.scgrk.reactnd.mobileFlashCards::decks";
 
 export function fetchDecks() {
-  return {decks: testDecks};
-  //return AsyncStorage.getItem(DECK_STORAGE_KEY)
+  return AsyncStorage.getItem(DECK_STORAGE_KEY);
 }
 
-export function submitEntry({entry, key}) {
-  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({[key]:entry}))
+export function saveState(state) {
+  return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(state))
 }
 
-export function removeEntry(key) {
-  return AsyncStorage.getItem(DECK_STORAGE_KEY)
-      .then((results) => {
-        const data = JSON.parse(results);
-        data[key] = undefined
-        delete data[key]
-        AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data))
-      })
+export function clearStorage() {
+  return AsyncStorage.removeItem(DECK_STORAGE_KEY);
 }

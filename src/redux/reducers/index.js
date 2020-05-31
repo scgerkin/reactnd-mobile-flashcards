@@ -29,7 +29,9 @@ function decks(state = {}, action) {
 function handleReceiveDecks(state, action) {
   return {
     ...state,
-    ...action.decks,
+    decks: {
+      ...action.decks,
+    }
   };
 }
 

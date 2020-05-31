@@ -8,14 +8,13 @@ export const MARK_ANSWER = "MARK_ANSWER";
 export const RESET_QUIZ = "RESET_QUIZ";
 export const DELETE_DECK = "DELETE_DECK";
 
-export function receiveDecks(decks) {
+function receiveDecks(decks) {
   return {
     type: RECEIVE_DECKS,
     decks,
   };
 }
 
-// todo hook into api
 export function addDeck(deck) {
   return {
     type: ADD_DECK,
@@ -41,7 +40,10 @@ export function addQuestion(deckId, question, answer) {
 
 export function handleInitialData() {
   return (dispatch) => {
-    return dispatch(receiveDecks(fetchDecks()));
+    return fetchDecks().then((result) => {
+      const decks = JSON.parse(result);
+      dispatch(receiveDecks(decks));
+    });
   };
 }
 
