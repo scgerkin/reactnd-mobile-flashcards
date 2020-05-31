@@ -6,7 +6,7 @@ import DefaultButton from "../Buttons/DefaultButton";
 import {btnSubmit} from "../../styles/buttons";
 import {inputDefault} from "../../styles/input";
 import {generateUID} from "../../utils/helpers";
-import {NAV_DECK_ROOT} from "../navConstants";
+import {NAV_DECK_ROOT} from "../../utils/navConstants";
 import {clearStorage} from "../../utils/api";
 
 class NewDeck extends React.Component {

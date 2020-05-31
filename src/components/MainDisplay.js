@@ -9,7 +9,7 @@ import {handleInitialData} from "../redux/actions";
 import NewDeck from "./Create/NewDeck";
 import DeckHome from "./Deck/DeckHome";
 import {CLR_GREEN, CLR_GREY_LT, CLR_LT_BLUE} from "../styles/colors";
-import {NAV_NEW_QUESTION, NAV_DECK_ROOT} from "./navConstants";
+import {NAV_NEW_QUESTION, NAV_DECK_ROOT} from "../utils/navConstants";
 
 const Tab = createBottomTabNavigator();
 

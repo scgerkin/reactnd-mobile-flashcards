@@ -4,7 +4,7 @@ import {Text, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
 import DefaultButton from "../Buttons/DefaultButton";
 import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
-import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../navConstants";
+import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../../utils/navConstants";
 import {deleteDeck, resetQuiz} from "../../redux/actions";
 
 
