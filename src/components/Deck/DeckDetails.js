@@ -4,9 +4,13 @@ import {Text, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
 import DefaultButton from "../Buttons/DefaultButton";
 import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
-import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../../utils/navConstants";
+import {
+  NAV_ADD_QUESTION_BASE,
+  NAV_DECK_LIST,
+  NAV_QUIZ,
+} from "../../utils/navConstants";
 import {deleteDeck, resetQuiz} from "../../redux/actions";
-
+import QuizResults from "../Quiz/QuizResults";
 
 //fixme refactor buttons into separate component
 //consider moving each button into a component
@@ -35,7 +39,6 @@ class DeckDetails extends Component {
     const {deck, navigation} = this.props;
     navigation.navigate(NAV_QUIZ, {
       deckId: deck.id,
-      resetQuiz: this.onResetQuiz
     });
   };
 
@@ -44,7 +47,8 @@ class DeckDetails extends Component {
     const {deck} = this.props;
     const numQuestions = deck.questions.length;
     const numAnswered = deck.correct.length + deck.incorrect.length;
-    const unfinishedQuiz = deck.correct.length !== 0 || deck.incorrect.length !== 0
+    const unfinishedQuiz = deck.correct.length !== 0 ||
+        deck.incorrect.length !== 0;
 
     if (numQuestions && numQuestions === numAnswered) {
       return this.resetQuizButton();
@@ -103,7 +107,7 @@ class DeckDetails extends Component {
               Total cards: {deck.questions.length}
             </Text>
 
-            {resultsDisplay(deck, style)}
+            <QuizResults deckId={deck.id} style={style}/>
 
             <DefaultButton
                 style={btnSubmit}
@@ -117,30 +121,6 @@ class DeckDetails extends Component {
                 text={"Delete Deck"}
                 onPressEvent={this.onDeleteDeck}/>
           </View>
-        </Fragment>
-    );
-  }
-}
-
-function resultsDisplay(deck, style) {
-  if (deck.correct.length === 0 && deck.incorrect.length === 0) {
-    return (
-        <Text style={style ? style.content : cardDefault.content}>You haven't
-          started a quiz for this deck yet!</Text>
-    );
-  } else {
-    const unanswered = deck.questions.length -
-        (deck.correct.length + deck.incorrect.length);
-    return (
-        <Fragment>
-          <Text style={style ? style.content : cardDefault.content}>Total
-            correct: {deck.correct.length}</Text>
-          <Text style={style ? style.content : cardDefault.content}>Total
-            incorrect: {deck.incorrect.length}</Text>
-          {unanswered > 0 && (
-              <Text style={style ? style.content : cardDefault.content}>Total
-                unanswered: {unanswered}</Text>
-          )}
         </Fragment>
     );
   }
