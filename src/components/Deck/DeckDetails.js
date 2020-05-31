@@ -7,6 +7,8 @@ import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
 import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../navConstants";
 import {deleteDeck, resetQuiz} from "../../redux/actions";
 
+//fixme refactor buttons into separate component
+//consider moving each button into a component
 class DeckDetails extends Component {
   onDeleteDeck = () => {
     //todo confirm delete
@@ -20,17 +22,65 @@ class DeckDetails extends Component {
     navigation.navigate(NAV_ADD_QUESTION_BASE + deck.id);
   };
 
+  //todo don't show when quiz not started
   onResetQuiz = () => {
     const {dispatch, deck} = this.props;
     dispatch(resetQuiz(deck.id));
   };
 
+  //todo don't show when no question or quiz completed
   onStartQuiz = () => {
     const {deck, navigation} = this.props;
     navigation.navigate(NAV_QUIZ, {
       deckId: deck.id,
     });
   };
+
+  //fixme this is a mess
+  quizButtons() {
+    const {deck} = this.props;
+    const numQuestions = deck.questions.length;
+    const numAnswered = deck.correct.length + deck.incorrect.length;
+    const unfinishedQuiz = deck.correct.length !== 0 || deck.incorrect.length !== 0
+
+    if (numQuestions && numQuestions === numAnswered) {
+      return this.resetQuizButton();
+    }
+
+    if (numQuestions && unfinishedQuiz) {
+      return (
+          <Fragment>
+            <Button
+                style={btnStart}
+                text={"Continue Quiz"}
+                onPressEvent={this.onStartQuiz}
+            />
+            {this.resetQuizButton()}
+          </Fragment>
+      );
+    }
+    if (numQuestions) {
+      return this.startQuizButton();
+    }
+  }
+
+  startQuizButton() {
+    return (
+        <Button
+            style={btnStart}
+            text={"Start Quiz"}
+            onPressEvent={this.onStartQuiz}/>
+    );
+  }
+
+  resetQuizButton() {
+    return (
+        <Button
+            style={btnSuccess}
+            text={"Reset Quiz"}
+            onPressEvent={this.onResetQuiz}/>
+    );
+  }
 
   render() {
     const {style, deck} = this.props;
@@ -49,20 +99,16 @@ class DeckDetails extends Component {
             <Text style={style ? style.content : cardDefault.content}>
               Total cards: {deck.questions.length}
             </Text>
+
             {resultsDisplay(deck, style)}
 
             <Button
                 style={btnSubmit}
                 text={"Add Question"}
                 onPressEvent={this.onAddQuestion}/>
-            <Button
-                style={btnStart}
-                text={"Start Quiz"}
-                onPressEvent={this.onStartQuiz}/>
-            <Button
-                style={btnSuccess}
-                text={"Reset Quiz"}
-                onPressEvent={this.onResetQuiz}/>
+
+            {this.quizButtons()}
+
             <Button
                 style={btnDelete}
                 text={"Delete Deck"}
