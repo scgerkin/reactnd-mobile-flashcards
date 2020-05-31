@@ -15,9 +15,10 @@ class NewQuestion extends React.Component {
   };
 
   onSubmit = () => {
-    const {dispatch, deckId} = this.props;
+    const {dispatch, deckId, navigation} = this.props;
     const {question, answer} = this.state;
     dispatch(addQuestion(deckId, question, answer));
+    navigation.navigate(deckId);
   };
 
   render() {
