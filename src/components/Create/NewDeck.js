@@ -6,7 +6,7 @@ import Button from "../Shared/Button";
 import {btnSubmit} from "../../styles/buttons";
 import {inputDefault} from "../../styles/input";
 import {generateUID} from "../../utils/helpers";
-import {DECK_ROOT} from "../navConstants";
+import {NAV_DECK_ROOT} from "../navConstants";
 
 class NewDeck extends React.Component {
   state = {
@@ -25,7 +25,7 @@ class NewDeck extends React.Component {
       incorrect: [],
     };
     dispatch(addDeck(deck));
-    navigation.navigate(DECK_ROOT, {screen: id});
+    navigation.navigate(NAV_DECK_ROOT, {screen: id});
   };
 
   render() {

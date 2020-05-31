@@ -9,7 +9,7 @@ import {handleInitialData} from "../redux/actions";
 import NewDeck from "./Create/NewDeck";
 import DeckHome from "./Deck/DeckHome";
 import {CLR_GREEN, CLR_GREY_LT, CLR_LT_BLUE} from "../styles/colors";
-import {CREATE_DECK_ROOT, DECK_ROOT} from "./navConstants";
+import {NAV_NEW_QUESTION, NAV_DECK_ROOT} from "./navConstants";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,11 +34,11 @@ class MainDisplay extends React.Component {
                   tabBarIcon: ({focused, color, size}) => {
                     let iconName;
 
-                    if (route.name === DECK_ROOT) {
+                    if (route.name === NAV_DECK_ROOT) {
                       iconName = focused ? "card-text" : "card-text-outline";
                       return <MaterialCommunityIcons name={iconName} size={size}
                                                      color={color}/>;
-                    } else if (route.name === CREATE_DECK_ROOT) {
+                    } else if (route.name === NAV_NEW_QUESTION) {
                       iconName = focused ? "pluscircle" : "pluscircleo";
                       return <AntDesign name={iconName} size={size}
                                         color={color}/>;
@@ -53,12 +53,12 @@ class MainDisplay extends React.Component {
                 }}
             >
               <Tab.Screen
-                  name={DECK_ROOT}
+                  name={NAV_DECK_ROOT}
                   component={DeckHome}
                   options={{title: "Your Decks"}}
               />
               <Tab.Screen
-                  name={CREATE_DECK_ROOT}
+                  name={NAV_NEW_QUESTION}
                   component={NewDeck}
                   options={{title: "Create a new Deck"}}
               />

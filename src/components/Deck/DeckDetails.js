@@ -4,28 +4,38 @@ import {Text, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
 import Button from "../Shared/Button";
 import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
+import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../navConstants";
+import {deleteDeck, resetQuiz} from "../../redux/actions";
 
 class DeckDetails extends Component {
   onDeleteDeck = () => {
-    console.log("ON DELETE");
+    //todo confirm delete
+    const {deck, dispatch, navigation} = this.props;
+    dispatch(deleteDeck(deck.id));
+    navigation.navigate(NAV_DECK_LIST);
   };
 
   onAddQuestion = () => {
-    console.log("ON ADD QUESTION");
+    const {deck, navigation} = this.props;
+    navigation.navigate(NAV_ADD_QUESTION_BASE + deck.id);
   };
 
   onResetQuiz = () => {
-    console.log("ON RESET QUIZ");
+    const {dispatch, deck} = this.props;
+    dispatch(resetQuiz(deck.id));
   };
 
   onStartQuiz = () => {
-    console.log("ON START QUIZ");
+    const {deck, navigation} = this.props;
+    navigation.navigate(NAV_QUIZ, {
+      deckId: deck.id,
+    });
   };
 
   render() {
     const {style, deck} = this.props;
 
-    if (!deck) {//todo handle null deck
+    if (!deck) {//todo replace with loading spinner
       return (
           <View><Text>Null deck</Text></View>
       );

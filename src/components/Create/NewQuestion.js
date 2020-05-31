@@ -7,6 +7,7 @@ import Button from "../Shared/Button";
 import {inputDefault} from "../../styles/input";
 
 //todo validate input
+//todo give feedback on question added
 class NewQuestion extends React.Component {
   state = {
     question: "",

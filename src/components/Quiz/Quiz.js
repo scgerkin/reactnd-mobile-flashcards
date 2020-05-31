@@ -97,10 +97,10 @@ function mapStateToProps({decks}, {route}) {
   //todo this is a mess
   let currentCardNumber = 0;
   if (deck.questions.length > 0) {
-    currentCardNumber = 1
+    currentCardNumber = 1;
   }
   if (unanswered.length !== deck.questions.length) {
-    currentCardNumber = deck.questions.length - unanswered.length + 1
+    currentCardNumber = deck.questions.length - unanswered.length + 1;
   }
 
   return {
