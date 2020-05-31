@@ -6,7 +6,6 @@ import DefaultButton from "../Buttons/DefaultButton";
 import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
 import {markAnswer} from "../../redux/actions";
-import QuizResults from "./QuizResults";
 
 class Quiz extends React.Component {
   state = {
@@ -44,18 +43,25 @@ class Quiz extends React.Component {
     });
   };
 
+  componentDidUpdate() {
+    const {currentCardNumber} = this.state;
+    const {cardsInDeck, deckId, navigation} = this.props;
+
+    if (currentCardNumber === cardsInDeck + 1) {
+      navigation.navigate(deckId);
+    }
+  }
+
   render() {
     const {currentCardNumber, currentQuestion} = this.state;
-    const {cardsInDeck, deckId, resetQuiz} = this.props;
+    const {cardsInDeck} = this.props;
 
-    if (currentCardNumber === cardsInDeck + 1) { //todo make component with results
-      return (
-          <QuizResults
-              deckId={deckId}
-              resetQuiz={resetQuiz}
-          />
-      );
-    } else if (currentCardNumber <= 0) { //todo make component for this
+    // this stops below from resulting in null errors before navigation happens
+    if (currentCardNumber === cardsInDeck + 1) {
+      return (<View/>);
+    }
+
+    if (currentCardNumber <= 0) { //todo make component for this
       return (
           <View><Text>No cards in this deck.</Text></View>
       );
@@ -93,7 +99,7 @@ function mapStateToProps({decks}, {route}) {
       currentQuestion: {id: "", question: "", answer: ""},
     };
   }
-  const {deckId, resetQuiz} = route.params;
+  const {deckId} = route.params;
   const deck = decks[deckId];
   const unanswered = shuffle(getUnansweredQuestions(deck));
 
@@ -112,7 +118,6 @@ function mapStateToProps({decks}, {route}) {
     currentCardNumber: currentCardNumber,
     deckQuestionStack: unanswered,
     currentQuestion: unanswered.length > 0 ? unanswered[0] : null,
-    resetQuiz: resetQuiz
   };
 }
 
