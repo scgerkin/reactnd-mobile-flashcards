@@ -1,6 +1,5 @@
 import React, {Fragment} from "react";
 import {connect} from "react-redux";
-import {Text, View} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
 import DeckDetails from "./DeckDetails";
 import DeckList from "./DeckList";
@@ -13,11 +12,6 @@ const Stack = createStackNavigator();
 
 function DeckHome(props) {
   const {decks} = props;
-
-  if (!decks) {
-    return noDecks(props);
-  }
-
   const deckIds = Object.keys(decks);
 
   return (
@@ -53,17 +47,6 @@ function DeckHome(props) {
           />
         </Stack.Navigator>
       </Fragment>
-  );
-}
-
-function noDecks(props) {
-  //todo handle no decks gracefully
-  console.log("NO DECKS RECEIVED FROM PROPS");
-  console.log(props);
-  return (
-      <View>
-        <Text>NO DECKS RECEIVED FROM PROPS</Text>
-      </View>
   );
 }
 
