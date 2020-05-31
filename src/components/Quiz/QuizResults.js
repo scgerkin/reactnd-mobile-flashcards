@@ -6,6 +6,8 @@ import Button from "../Shared/Button";
 import {btnDefault} from "../../styles/buttons";
 import {resetQuiz} from "../../redux/actions";
 
+//fixme container is not encompassing entire result text
+//todo on reset, navigate to quiz home
 class QuizResults extends React.Component {
 
   onResetQuiz = () => {

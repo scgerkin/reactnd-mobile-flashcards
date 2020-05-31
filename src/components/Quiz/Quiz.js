@@ -81,7 +81,7 @@ class Quiz extends React.Component {
   }
 }
 
-function mapStateToProps({decks}, {deckId}) {
+function mapStateToProps({decks}, {route}) {
   if (!decks) {
     return {
       cardsInDeck: 0,
@@ -90,14 +90,23 @@ function mapStateToProps({decks}, {deckId}) {
       currentQuestion: {id: "", question: "", answer: ""},
     };
   }
-
+  const {deckId} = route.params;
   const deck = decks[deckId];
   const unanswered = shuffle(getUnansweredQuestions(deck));
+
+  //todo this is a mess
+  let currentCardNumber = 0;
+  if (deck.questions.length > 0) {
+    currentCardNumber = 1
+  }
+  if (unanswered.length !== deck.questions.length) {
+    currentCardNumber = deck.questions.length - unanswered.length + 1
+  }
 
   return {
     deckId: deckId,
     cardsInDeck: deck.questions.length,
-    currentCardNumber: deck.questions.length > 0 ? 1 : 0,
+    currentCardNumber: currentCardNumber,
     deckQuestionStack: unanswered,
     currentQuestion: unanswered.length > 0 ? unanswered[0] : null,
   };
