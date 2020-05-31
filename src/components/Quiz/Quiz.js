@@ -1,8 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Text, View} from "react-native";
-import {btnIncorrect, btnSuccess} from "../../styles/buttons";
-import DefaultButton from "../Buttons/DefaultButton";
 import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
 import {markAnswer} from "../../redux/actions";
