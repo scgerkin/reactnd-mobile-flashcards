@@ -7,7 +7,6 @@ import {btnSubmit} from "../../styles/buttons";
 import {inputDefault} from "../../styles/input";
 import {generateUID} from "../../utils/helpers";
 import {NAV_DECK_ROOT} from "../../utils/navConstants";
-import {clearStorage} from "../../utils/api";
 
 class NewDeck extends React.Component {
   state = {
@@ -41,8 +40,6 @@ class NewDeck extends React.Component {
           <DefaultButton style={btnSubmit}
                          onPressEvent={this.onSubmit}
                          text={"Submit"}/>
-          {/* FIXME remove after finished testing */}
-          <DefaultButton onPressEvent={()=> clearStorage()} text={"Clear Storage"}/>
         </View>
     );
   }
