@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Text, View} from "react-native";
+import {Text, View, StyleSheet} from "react-native";
 import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
 import {markAnswer} from "../../redux/actions";
@@ -66,18 +66,19 @@ class Quiz extends React.Component {
       );
     } else {
       return (
-          <View style={{flex: 1}}>
-            <View style={{flex: .5}}>
-              <Text>Current Card: {currentCardNumber}</Text>
-              <Text>Cards in Deck: {cardsInDeck}</Text>
+          <View style={style.container}>
+            <View style={style.cardNumContainer}>
+              <Text style={style.cardNumText}>
+                Card {currentCardNumber} of {cardsInDeck}
+              </Text>
             </View>
-            <View style={{flex: 3}}>
+            <View style={style.noteCardContainer}>
               <NoteCard
                   question={currentQuestion.question}
                   answer={currentQuestion.answer}
               />
             </View>
-            <View style={{flex: 2}}>
+            <View style={style.btnContainer}>
               <QuizButtons markAnswer={this.onMarkAnswer}/>
             </View>
           </View>
@@ -85,6 +86,24 @@ class Quiz extends React.Component {
     }
   }
 }
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  cardNumContainer: {
+    flex: .15
+  },
+  cardNumText: {
+    fontWeight: "bold"
+  },
+  noteCardContainer: {
+    flex: 3
+  },
+  btnContainer: {
+    flex: 1.5
+  }
+})
 
 function mapStateToProps({decks}, {route}) {
   const {deckId} = route.params;
