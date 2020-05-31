@@ -91,14 +91,6 @@ class Quiz extends React.Component {
 }
 
 function mapStateToProps({decks}, {route}) {
-  if (!decks) {
-    return {
-      cardsInDeck: 0,
-      currentCardNumber: 0,
-      deckQuestionStack: [],
-      currentQuestion: {id: "", question: "", answer: ""},
-    };
-  }
   const {deckId} = route.params;
   const deck = decks[deckId];
   const unanswered = shuffle(getUnansweredQuestions(deck));
