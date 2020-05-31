@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, TouchableWithoutFeedback, View} from "react-native";
+import {Text, TouchableWithoutFeedback, View, StyleSheet} from "react-native";
 import {cardDefault} from "../../styles/cards";
 
 class NoteCard extends React.Component {
@@ -17,8 +17,8 @@ class NoteCard extends React.Component {
         <TouchableWithoutFeedback
             onPress={this.onFlipCard}
         >
-          <View style={cardDefault.container}>
-            <Text style={cardDefault.content}>
+          <View style={style.container}>
+            <Text style={style.content}>
               {this.state.questionView ?
                   question :
                   answer}
@@ -28,5 +28,16 @@ class NoteCard extends React.Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  container: {
+    ...cardDefault.container,
+  },
+  content: {
+    ...cardDefault.content,
+    textAlign: "center",
+    fontSize: 24
+  }
+})
 
 export default NoteCard;
