@@ -1,5 +1,6 @@
 import {fetchDecks} from "../../utils/api";
 import {generateUID} from "../../utils/helpers";
+import {defaultDecks} from "../../utils/_DATA";
 
 export const RECEIVE_DECKS = "RECEIVE_DECKS";
 export const ADD_DECK = "ADD_DECK";
@@ -41,7 +42,7 @@ export function addQuestion(deckId, question, answer) {
 export function handleInitialData() {
   return (dispatch) => {
     return fetchDecks().then((result) => {
-      const decks = JSON.parse(result);
+      const decks = !!result ? JSON.parse(result) : defaultDecks;
       dispatch(receiveDecks(decks));
     });
   };
