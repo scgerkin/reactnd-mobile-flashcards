@@ -1,6 +1,7 @@
 import {
   ADD_DECK,
   ADD_QUESTION,
+  DELETE_DECK,
   MARK_ANSWER,
   RECEIVE_DECKS,
   RESET_QUIZ,
@@ -18,6 +19,8 @@ function decks(state = {}, action) {
       return handleMarkAnswer(state, action);
     case RESET_QUIZ:
       return handleResetQuiz(state, action);
+    case DELETE_DECK:
+      return handleDeleteDeck(state, action);
     default:
       return state;
   }
@@ -104,6 +107,21 @@ function handleResetQuiz(state, action) {
       },
     },
   };
+}
+
+function handleDeleteDeck(state, action) {
+  const {deckId} = action;
+  const {decks} = state;
+
+  delete decks[deckId];
+
+  return {
+    ...state,
+    decks: {
+      ...decks,
+    },
+  };
+
 }
 
 export default decks;

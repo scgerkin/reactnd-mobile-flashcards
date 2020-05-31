@@ -1,25 +1,26 @@
 import {fetchDecks} from "../../utils/api";
 import {generateUID} from "../../utils/helpers";
+
 export const RECEIVE_DECKS = "RECEIVE_DECKS";
 export const ADD_DECK = "ADD_DECK";
 export const ADD_QUESTION = "ADD_QUESTION";
 export const MARK_ANSWER = "MARK_ANSWER";
 export const RESET_QUIZ = "RESET_QUIZ";
-
+export const DELETE_DECK = "DELETE_DECK";
 
 export function receiveDecks(decks) {
   return {
     type: RECEIVE_DECKS,
-    decks
-  }
+    decks,
+  };
 }
 
 // todo hook into api
 export function addDeck(deck) {
   return {
     type: ADD_DECK,
-    deck
-  }
+    deck,
+  };
 }
 
 // todo hook into api
@@ -28,20 +29,20 @@ export function addQuestion(deckId, question, answer) {
   const questionItem = {
     id: generateUID(),
     question: question,
-    answer: answer
-  }
+    answer: answer,
+  };
 
   return {
     type: ADD_QUESTION,
     deckId,
-    question: questionItem
-  }
+    question: questionItem,
+  };
 }
 
 export function handleInitialData() {
   return (dispatch) => {
-    return dispatch(receiveDecks(fetchDecks()))
-  }
+    return dispatch(receiveDecks(fetchDecks()));
+  };
 }
 
 export function markAnswer({deckId, questionId, correct}) {
@@ -49,13 +50,20 @@ export function markAnswer({deckId, questionId, correct}) {
     type: MARK_ANSWER,
     deckId,
     questionId,
-    correct
-  }
+    correct,
+  };
 }
 
 export function resetQuiz(deckId) {
   return {
     type: RESET_QUIZ,
-    deckId
-  }
+    deckId,
+  };
+}
+
+export function deleteDeck(deckId) {
+  return {
+    type: DELETE_DECK,
+    deckId,
+  };
 }
