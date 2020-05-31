@@ -1,9 +1,14 @@
 import AsyncStorage from "@react-native-community/async-storage";
+import {testDecks} from "./_DATA";
 
 export const DECK_STORAGE_KEY = "com.scgrk.reactnd.mobileFlashCards::decks";
 
 export function fetchDecks() {
-  return AsyncStorage.getItem(DECK_STORAGE_KEY);
+  //fixme return storage after styling is done
+  return new Promise((res, rej) => {
+    res(JSON.stringify(testDecks))
+  });
+  //return AsyncStorage.getItem(DECK_STORAGE_KEY);
 }
 
 export function saveState(state) {
