@@ -67,13 +67,19 @@ class Quiz extends React.Component {
     } else {
       return (
           <View style={{flex: 1}}>
-            <Text>Current Card: {currentCardNumber}</Text>
-            <Text>Cards in Deck: {cardsInDeck}</Text>
-            <NoteCard
-                question={currentQuestion.question}
-                answer={currentQuestion.answer}
-            />
-            <QuizButtons markAnswer={this.onMarkAnswer}/>
+            <View style={{flex: .5}}>
+              <Text>Current Card: {currentCardNumber}</Text>
+              <Text>Cards in Deck: {cardsInDeck}</Text>
+            </View>
+            <View style={{flex: 3}}>
+              <NoteCard
+                  question={currentQuestion.question}
+                  answer={currentQuestion.answer}
+              />
+            </View>
+            <View style={{flex: 2}}>
+              <QuizButtons markAnswer={this.onMarkAnswer}/>
+            </View>
           </View>
       );
     }

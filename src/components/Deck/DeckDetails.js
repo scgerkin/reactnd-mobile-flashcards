@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Text, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
 import DefaultButton from "../Buttons/DefaultButton";
-import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
+import {btnDelete, btnStart, btnSubmit, btnCorrect} from "../../styles/buttons";
 import {
   NAV_ADD_QUESTION_BASE,
   NAV_DECK_LIST,
@@ -83,7 +83,7 @@ class DeckDetails extends Component {
   resetQuizButton() {
     return (
         <DefaultButton
-            style={btnSuccess}
+            style={btnCorrect}
             text={"Reset Quiz"}
             onPressEvent={this.onResetQuiz}/>
     );

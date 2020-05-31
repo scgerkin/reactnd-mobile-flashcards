@@ -14,7 +14,6 @@ export const btnDefault = StyleSheet.create({
     padding: 20,
     paddingLeft: 15,
     paddingRight: 15,
-    height: 45,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -36,7 +35,7 @@ export const btnText = StyleSheet.create({
   }
 })
 
-export const btnSuccess = StyleSheet.create({
+export const btnCorrect = StyleSheet.create({
   container: {
     ...btnDefault.container,
     backgroundColor: CLR_GREEN,
