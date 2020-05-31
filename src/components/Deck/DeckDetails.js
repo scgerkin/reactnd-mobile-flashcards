@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
 import {Text, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
-import Button from "../Shared/Button";
+import DefaultButton from "../Buttons/DefaultButton";
 import {btnDelete, btnStart, btnSubmit, btnSuccess} from "../../styles/buttons";
 import {NAV_ADD_QUESTION_BASE, NAV_DECK_LIST, NAV_QUIZ} from "../navConstants";
 import {deleteDeck, resetQuiz} from "../../redux/actions";
@@ -50,7 +50,7 @@ class DeckDetails extends Component {
     if (numQuestions && unfinishedQuiz) {
       return (
           <Fragment>
-            <Button
+            <DefaultButton
                 style={btnStart}
                 text={"Continue Quiz"}
                 onPressEvent={this.onStartQuiz}
@@ -66,7 +66,7 @@ class DeckDetails extends Component {
 
   startQuizButton() {
     return (
-        <Button
+        <DefaultButton
             style={btnStart}
             text={"Start Quiz"}
             onPressEvent={this.onStartQuiz}/>
@@ -75,7 +75,7 @@ class DeckDetails extends Component {
 
   resetQuizButton() {
     return (
-        <Button
+        <DefaultButton
             style={btnSuccess}
             text={"Reset Quiz"}
             onPressEvent={this.onResetQuiz}/>
@@ -102,14 +102,14 @@ class DeckDetails extends Component {
 
             {resultsDisplay(deck, style)}
 
-            <Button
+            <DefaultButton
                 style={btnSubmit}
                 text={"Add Question"}
                 onPressEvent={this.onAddQuestion}/>
 
             {this.quizButtons()}
 
-            <Button
+            <DefaultButton
                 style={btnDelete}
                 text={"Delete Deck"}
                 onPressEvent={this.onDeleteDeck}/>

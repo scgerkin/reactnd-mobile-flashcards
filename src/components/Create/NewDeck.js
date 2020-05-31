@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {TextInput, View} from "react-native";
 import {addDeck} from "../../redux/actions";
-import Button from "../Shared/Button";
+import DefaultButton from "../Buttons/DefaultButton";
 import {btnSubmit} from "../../styles/buttons";
 import {inputDefault} from "../../styles/input";
 import {generateUID} from "../../utils/helpers";
@@ -37,9 +37,9 @@ class NewDeck extends React.Component {
               onChangeText={text => this.setState(({deckName: text}))}
               defaultValue={this.state.deckName}
           />
-          <Button style={btnSubmit}
-                  onPressEvent={this.onSubmit}
-                  text={"Submit"}/>
+          <DefaultButton style={btnSubmit}
+                         onPressEvent={this.onSubmit}
+                         text={"Submit"}/>
         </View>
     );
   }

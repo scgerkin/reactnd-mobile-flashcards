@@ -2,7 +2,7 @@ import React from "react";
 import {TouchableOpacity, Text} from "react-native";
 import {btnDefault} from "../../styles/buttons";
 
-function Button(props) {
+function DefaultButton(props) {
   const {style, text, onPressEvent} = props
 
   return (
@@ -17,4 +17,4 @@ function Button(props) {
   );
 }
 
-export default Button;
+export default DefaultButton;

@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Text, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
-import Button from "../Shared/Button";
+import DefaultButton from "../Buttons/DefaultButton";
 import {btnDefault} from "../../styles/buttons";
 import {resetQuiz} from "../../redux/actions";
 
@@ -29,7 +29,7 @@ class QuizResults extends React.Component {
     }
 
     return (
-        <View>
+        <View style={{flex: 1}}>
           <View style={cardDefault.container}>
             <Text style={cardDefault.title}>Quiz Results</Text>
             <Text style={cardDefault.content}>
@@ -38,7 +38,7 @@ class QuizResults extends React.Component {
               Total Incorrect: {deck.incorrect.length} {"\n"}
             </Text>
           </View>
-          <Button style={btnDefault} text={"Reset Quiz"} onPressEvent={this.onResetQuiz}/>
+          <DefaultButton style={btnDefault} text={"Reset Quiz"} onPressEvent={this.onResetQuiz}/>
         </View>
     );
   }

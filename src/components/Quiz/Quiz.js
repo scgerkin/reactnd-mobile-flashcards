@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Text, View} from "react-native";
 import {btnIncorrect, btnSuccess} from "../../styles/buttons";
-import Button from "../Shared/Button";
+import DefaultButton from "../Buttons/DefaultButton";
 import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
 import {markAnswer} from "../../redux/actions";
@@ -65,12 +65,12 @@ class Quiz extends React.Component {
                 question={currentQuestion.question}
                 answer={currentQuestion.answer}
             />
-            <Button
+            <DefaultButton
                 style={btnSuccess}
                 text={"Correct"}
                 onPressEvent={() => this.onMarkAnswer(true)}
             />
-            <Button
+            <DefaultButton
                 style={btnIncorrect}
                 text={"Incorrect"}
                 onPressEvent={() => this.onMarkAnswer(false)}

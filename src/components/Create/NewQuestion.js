@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {TextInput, View} from "react-native";
 import {addQuestion} from "../../redux/actions";
 import {btnSubmit} from "../../styles/buttons";
-import Button from "../Shared/Button";
+import DefaultButton from "../Buttons/DefaultButton";
 import {inputDefault} from "../../styles/input";
 
 //todo validate input
@@ -36,9 +36,9 @@ class NewQuestion extends React.Component {
               onChangeText={text => this.setState(({answer: text}))}
               defaultValue={this.state.answer}
           />
-          <Button style={btnSubmit}
-                  onPressEvent={this.onSubmit}
-                  text={"Submit"}/>
+          <DefaultButton style={btnSubmit}
+                         onPressEvent={this.onSubmit}
+                         text={"Submit"}/>
         </View>
     );
   }
