@@ -6,6 +6,7 @@ import DefaultButton from "../Buttons/DefaultButton";
 import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
 import {markAnswer} from "../../redux/actions";
+import QuizButtons from "./QuizButtons";
 
 class Quiz extends React.Component {
   state = {
@@ -74,16 +75,7 @@ class Quiz extends React.Component {
                 question={currentQuestion.question}
                 answer={currentQuestion.answer}
             />
-            <DefaultButton
-                style={btnSuccess}
-                text={"Correct"}
-                onPressEvent={() => this.onMarkAnswer(true)}
-            />
-            <DefaultButton
-                style={btnIncorrect}
-                text={"Incorrect"}
-                onPressEvent={() => this.onMarkAnswer(false)}
-            />
+            <QuizButtons markAnswer={this.onMarkAnswer}/>
           </View>
       );
     }
