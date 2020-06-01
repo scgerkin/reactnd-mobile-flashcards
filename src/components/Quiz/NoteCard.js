@@ -1,11 +1,11 @@
 import React from "react";
-import {Text, TouchableWithoutFeedback, View, StyleSheet} from "react-native";
+import {StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
 import {cardDefault} from "../../styles/cards";
 
 class NoteCard extends React.Component {
   state = {
-    questionView: true
-  }
+    questionView: true,
+  };
 
   onFlipCard = () => {
     this.setState({questionView: !this.state.questionView});
@@ -18,11 +18,21 @@ class NoteCard extends React.Component {
             onPress={this.onFlipCard}
         >
           <View style={style.container}>
-            <Text style={style.content}>
-              {this.state.questionView ?
-                  question :
-                  answer}
-            </Text>
+            <View style={{flex: 3, alignItems: "center"}}>
+              <Text style={style.content}>
+                {this.state.questionView ?
+                    question :
+                    answer}
+              </Text>
+            </View>
+            <View style={{flex: 1, alignItems: "flex-end"}}>
+              <Text style={style.footer}>
+                {this.state.questionView
+                    ? "(Touch to show answer)"
+                    : "(Touch to show question)"
+                }
+              </Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
     );
@@ -36,8 +46,13 @@ const style = StyleSheet.create({
   content: {
     ...cardDefault.content,
     textAlign: "center",
-    fontSize: 24
-  }
-})
+    fontSize: 24,
+  },
+  footer: {
+    ...cardDefault.content,
+    fontSize: 16,
+    alignItems: "flex-end",
+  },
+});
 
 export default NoteCard;
