@@ -4,7 +4,7 @@ import DefaultButton from "../Buttons/DefaultButton";
 import {btnCorrect, btnIncorrect} from "../../styles/buttons";
 
 function QuizButtons(props) {
-  const {markAnswer, resetQuiz} = props;
+  const {markAnswer} = props;
   return (
       <View style={style.container}>
         <DefaultButton

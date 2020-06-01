@@ -5,6 +5,10 @@ import NoteCard from "./NoteCard";
 import {shuffle} from "../../utils/helpers";
 import {markAnswer} from "../../redux/actions";
 import QuizButtons from "./QuizButtons";
+import {
+  setLocalNotification,
+  turnOffLocalNotification,
+} from "../../utils/notification";
 
 class Quiz extends React.Component {
   state = {
@@ -21,6 +25,20 @@ class Quiz extends React.Component {
       deckQuestionStack,
       currentQuestion,
     }));
+  }
+
+  componentDidUpdate() {
+    const {currentCardNumber} = this.state;
+    const {cardsInDeck, navigation, deckId} = this.props;
+
+    if (currentCardNumber === cardsInDeck + 1) {
+      console.log("QUIZ DONE");
+      turnOffLocalNotification().then(() => {
+        setLocalNotification().then(() => {
+          navigation.navigate(deckId);
+        })
+      })
+    }
   }
 
   onMarkAnswer = (correct) => {
@@ -41,15 +59,6 @@ class Quiz extends React.Component {
       };
     });
   };
-
-  componentDidUpdate() {
-    const {currentCardNumber} = this.state;
-    const {cardsInDeck, deckId, navigation} = this.props;
-
-    if (currentCardNumber === cardsInDeck + 1) {
-      navigation.navigate(deckId);
-    }
-  }
 
   render() {
     const {currentCardNumber, currentQuestion} = this.state;
