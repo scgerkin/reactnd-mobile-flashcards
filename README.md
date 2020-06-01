@@ -1,85 +1,27 @@
+# Mobile FlashCards
+This project was created as part of [Udacity's React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019).
 
-[Rubric](https://review.udacity.com/#!/rubrics/1021/view)
+It is a mobile application created with `react-native` to run on both iOS and Android. As a note, only Android has been tested; however, there is not any Android specific implementation that should break iOS compatability.
 
-## Notes:
+The purpose of the application is to allow the user to create a deck of notecards that can be used to study for a test. For demonstration purposes, the application starts off with a few decks that can be deleted or modified.
 
-[React Navigation](https://reactnavigation.org/docs/getting-started/)
+## Run the application
+To run the application, you must have `react-native` and `expo-cli` installed.
+```sh
+git clone https://github.com/scgerkin/reactnd-mobile-flashcards.git
+cd reactnd-mobile-flashcards
+npm install
+npm start
+# OR
+expo start
+``` 
+This will start the `expo` development console. From there, you can launch the application in an emulator or device.
 
-Stack Navigator
-[https://reactnavigation.org/docs/hello-react-navigation/](https://reactnavigation.org/docs/hello-react-navigation/)
-[https://reactnavigation.org/docs/navigating/](https://reactnavigation.org/docs/navigating/)
-[https://reactnavigation.org/docs/params/](https://reactnavigation.org/docs/params/)
-[https://reactnavigation.org/docs/headers/](https://reactnavigation.org/docs/headers/)
-[https://reactnavigation.org/docs/nesting-navigators/](https://reactnavigation.org/docs/nesting-navigators/)
+## Overview
+To create a new deck, touch the tab navigator `Create a new Deck` and enter the name of the deck. This will then navigate to the `Deck` screen and allow the user to add questions to the deck. Once a question is added, a quiz can be started.
 
-Tab Navigator
-[https://reactnavigation.org/docs/tab-based-navigation/](https://reactnavigation.org/docs/tab-based-navigation/)
+Touching a notecard in the quiz will flip it to the answer. Once all notecards have been answered, the app will navigate back to the home screen for that deck and show the details of the quiz.
 
-Drawer Navigator
-[https://reactnavigation.org/docs/drawer-based-navigation](https://reactnavigation.org/docs/drawer-based-navigation)
+Quizzes can be stopped and resumed at any time without losing progress.
 
-## Requirements
-- Use create-react-native-app to build your project.
-- Allow users to create a deck which can hold an unlimited number of cards.
-- Allow users to add a card to a specific deck.
-- The front of the card should display the question.
-- The back of the card should display the answer.
-- Users should be able to quiz themselves on a specific deck and receive a score once they're done.
-- Users should receive a notification to remind themselves to study if they haven't already for that day.
-
-### Views
-- Deck List View (Default View)
-    - Displays the title of each Deck
-    - Displays the number of cards in each deck
-- Individual Deck View
-    - Displays the title of the Deck
-    - Displays the number of cards in the deck
-    - Displays an option to start a quiz on this specific deck
-    - An option to add a new question to the deck
-- Quiz View
-    - displays a card question
-    - an option to view the answer (flips the card)
-    - a "Correct" button
-    - an "Incorrect" button
-    - the number of cards left in the quiz
-    - Displays the percentage correct once the quiz is complete
-- New Deck View
-    - An option to enter in the title for the new deck
-    - An option to submit the new deck title
-- New Question View
-    - An option to enter in the question
-    - An option to enter in the answer
-    - An option to submit the new question
-
-### Data
-```
-{
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-}
-```
-To manage your `AsyncStorage` database, you'll want to create four different helper methods.
-- `getDecks`: return all of the decks along with their titles, questions, and answers.
-- `getDeck`: take in a single id argument and return the deck associated with that id.
-- `saveDeckTitle`: take in a single title argument and add it to the decks.
-- `addCardToDeck`: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
+After a quiz has been started (at least one notecard question answered either correctly or incorrectly), the quiz can be reset to a fresh status.
